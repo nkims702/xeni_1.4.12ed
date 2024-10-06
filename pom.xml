@@ -11,6 +11,8 @@
 	<groupId>com.kims.nexacro</groupId>
 	<artifactId>demo-nexacro-webproject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
+	    
 	<packaging>war</packaging>
 	<name>demo-nexacro-web-gitea</name>
 	<description>myNOW3.1 project for Spring Boot</description>
@@ -109,11 +111,15 @@
 		<finalName>ROOT</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
 				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>utf-8</encoding>
 					<outputDirectory>C:\dev\Tomcat 9.0\webapps</outputDirectory>
-				</configuration>  
+				</configuration> 
+				 
 			</plugin>
 		</plugins>
 	</build>
