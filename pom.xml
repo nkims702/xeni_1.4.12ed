@@ -117,13 +117,26 @@
 		<finalName>ROOT</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId> 
-				<configuration>
-					<outputDirectory>C:\dev\Tomcat 9.0_Tomcat9-01\webapps</outputDirectory>
-				</configuration>  
+				<groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.6.1</version>
+        <configuration>
+          <verbose>true</verbose>
+          <fork>true</fork>
+          <executable>${JAVA_HOME}/bin/javac</executable>
+          <compilerVersion>1.8</compilerVersion>
+        </configuration>
 			</plugin>
 		</plugins>
 	</build>
-
+	<!-- 
+	
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId> 
+				
+	<configuration>
+					<outputDirectory>C:\dev\Tomcat 9.0_Tomcat9-01\webapps</outputDirectory>
+				</configuration>  
+	
+	 -->
 </project>
