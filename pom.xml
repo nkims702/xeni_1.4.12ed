@@ -113,41 +113,15 @@
 		
 		 
 	</dependencies>
-
-	<build>
+ 	<build>
 		<finalName>ROOT</finalName>
 		<plugins>
-			
 			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-		       		<version>3.6.1</version>
-				       <configuration>
-				         <source>1.8</source>
-				         <target>1.8</target>
-				       </configuration> 
-			
-			
-				<!-- <groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>3.3.1</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId> 
 				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<maven.compiler.source>1.8</maven.compiler.source>
- 					<maven.compiler.target>1.8</maven.compiler.target>
-					<encoding>utf-8</encoding>
-					
-				</configuration>  -->
-				
-				
-				<!-- <artifactId>maven-compiler-plugin</artifactId>
-				<version>3.6.1</version>
-				<configuration>
-					<maven.compiler.source>1.8</maven.compiler.source>
- 					<maven.compiler.target>1.8</maven.compiler.target>
-					<encoding>utf-8</encoding>
-					
-				</configuration> 
-				 --> 
+					<outputDirectory>C:\dev\Tomcat 9.0_Tomcat9-01\webapps</outputDirectory>
+				</configuration>  
 			</plugin>
 		</plugins>
 	</build>
