@@ -12,7 +12,7 @@
 	<artifactId>demo-nexacro-webproject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>demo-nexacro-web-2</name>
+	<name>demo-nexacro-web-gitea</name>
 	<description>myNOW3.1 project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
