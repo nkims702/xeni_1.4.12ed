@@ -66,11 +66,4 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/com/zaxxer/HikariCP/2.6.0/HikariCP-2.6.0.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/projectlombok/lombok/1.18.18/lombok-1.18.18.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\dev\git_gitea\nexacro-web\src\main\webapp\WEB-INF\lib\tomcat-embed-jasper-9.0.44.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\dev\git_gitea\nexacro-web\src\main\webapp\WEB-INF\lib\jstl-1.2.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\dev\git_gitea\nexacro-web\src\main\webapp\WEB-INF\lib\nexacro-xapi-java-1.0.12.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\dev\git_gitea\nexacro-web\src\main\webapp\WEB-INF\lib\nexacro-xeni-java-1.4.13.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\dev\git_gitea\nexacro-web\src\main\webapp\WEB-INF\lib\uiadapter-spring-core-1.0.0-SNAPSHOT.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\dev\git_gitea\nexacro-web\src\main\webapp\WEB-INF\lib\uiadapter-spring-dataaccess-1.0.0-SNAPSHOT.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\dev\git_gitea\nexacro-web\src\main\webapp\WEB-INF\lib\uiadapter-spring-excel-1.0.0-SNAPSHOT.jar" enabled="true" runInBatchMode="false"/>
 </factorypath>
