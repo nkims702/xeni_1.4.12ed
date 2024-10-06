@@ -56,6 +56,8 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.8.1</version>
 					<configuration>
+						<executable>C:\dev\Java\jdk1.8.0_25\bin\javac</executable>
+          				<compilerVersion>1.8</compilerVersion>
 						<source>1.8</source> <!-- version -->
 						<target>1.8</target>
 					</configuration>
