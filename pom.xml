@@ -105,13 +105,27 @@
 		</dependency> -->
 		 
 		<!-- end nexacro -->
+		
+		
+		 
 	</dependencies>
 
 	<build>
 		<finalName>ROOT</finalName>
 		<plugins>
+			
 			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.1</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<maven.compiler.source>1.8</maven.compiler.source>
+ 					<maven.compiler.target>1.8</maven.compiler.target>
+					<encoding>utf-8</encoding>
+					
+				</configuration> 
+				<!-- <artifactId>maven-compiler-plugin</artifactId>
 				<version>3.6.1</version>
 				<configuration>
 					<maven.compiler.source>1.8</maven.compiler.source>
@@ -119,7 +133,7 @@
 					<encoding>utf-8</encoding>
 					
 				</configuration> 
-				 
+				 --> 
 			</plugin>
 		</plugins>
 	</build>
