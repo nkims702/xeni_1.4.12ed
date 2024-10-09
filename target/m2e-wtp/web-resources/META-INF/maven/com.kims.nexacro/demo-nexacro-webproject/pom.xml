@@ -11,12 +11,87 @@
 	<groupId>com.kims.nexacro</groupId>
 	<artifactId>demo-nexacro-webproject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
+	    
 	<packaging>war</packaging>
 	<name>demo-nexacro-web-gitea</name>
 	<description>myNOW3.1 project for Spring Boot</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>
+	
+	<!-- s profile -->
+	<profiles>
+	   <!-- local: 로컬개발 (기본 값) -->
+	   <profile>
+	      <id>local</id>
+	      <activation>
+	         <!--<activeByDefault>true</activeByDefault>-->
+	      </activation>
+	      <properties>
+	         <environment>local</environment>
+	      </properties>
+	      <build>
+			<finalName>ROOT</finalName>
+			
+			<resources>
+				<resource>
+					<directory>${project.basedir}/src/main/resources</directory>
+					<excludes>
+						<exclude>**/*.java</exclude>
+					</excludes>
+				</resource>
+			</resources>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId> <!-- 컴파일러가 사용하는 플러그인 -->
+					<configuration>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.1</version>
+					<configuration>
+						<executable>C:\dev\Java\jdk1.8.0_25\bin\javac</executable>
+          				<compilerVersion>1.8</compilerVersion>
+						<source>1.8</source> <!-- version -->
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<!-- war plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.2.1</version>
+					<configuration>
+						<outputDirectory>C:\dev\Tomcat 9.0\webapps</outputDirectory> <!-- war파일 디렉토리 -->
+						<failOnMissingWebXml>false</failOnMissingWebXml> <!-- web.xml이 없을 때 에러를 낼건지 안낼건지 -->
+					</configuration>
+				</plugin>
+			</plugins>
+		</build>
+	   </profile>
+	   <!-- dev: 개발 -->
+	   <profile>
+	      <id>dev</id>
+	      <properties>
+	         <environment>dev</environment>
+	      </properties>
+	   </profile>
+	   <!-- prd: 운영 -->
+	   <profile>
+	      <id>prod</id>
+	      <properties>
+	         <environment>prod</environment>
+	      </properties>
+	   </profile>
+	</profiles>
+	<!-- e profile  -->
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -103,19 +178,11 @@
 		</dependency> -->
 		 
 		<!-- end nexacro -->
+		
+		
+		 
 	</dependencies>
-
-	<build>
-		<finalName>ROOT</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<outputDirectory>C:\dev\Tomcat 9.0\webapps</outputDirectory>
-				</configuration>  
-			</plugin>
-		</plugins>
-	</build>
-
+ 	
+	
+	
 </project>
