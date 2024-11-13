@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
  
 
-@RestController
+//@RestController
 public class ErrorHandlerController implements ErrorController{
  
     @Override

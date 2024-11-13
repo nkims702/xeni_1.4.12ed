@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ReactRestAPI {
 	
  
-	 @RequestMapping("/")
+	 @RequestMapping("/index")
 	    public ModelAndView handleError(HttpServletRequest request) {
 	    
 //	    	return "error 404";

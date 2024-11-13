@@ -1,1 +1,6 @@
 index.jsp
+
+gitea
+
+
+outputDirectory
