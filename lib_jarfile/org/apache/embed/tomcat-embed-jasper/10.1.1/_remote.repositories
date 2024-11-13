@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 30 23:52:29 KST 2024
+tomcat-embed-jasper-10.1.1.jar>central=
+tomcat-embed-jasper-10.1.1-sources.jar>central=
+tomcat-embed-jasper-10.1.1.pom>central=
