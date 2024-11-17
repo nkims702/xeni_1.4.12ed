@@ -20,6 +20,16 @@
             obj = new Dataset("dsExportExcelList", this);
             obj._setContents("<ColumnInfo><Column id=\"ID\" type=\"STRING\" size=\"256\"/><Column id=\"NAME\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"ID\">1</Col><Col id=\"NAME\">1</Col></Row><Row><Col id=\"ID\">2</Col><Col id=\"NAME\">2</Col></Row><Row><Col id=\"ID\">3</Col><Col id=\"NAME\">3</Col></Row></Rows>");
             this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsRequestParam", this);
+            obj._setContents("<ColumnInfo><Column id=\"id\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"id\">id</Col><Col id=\"name\">kims702</Col></Row></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsInLogin", this);
+            obj._setContents("<ColumnInfo><Column id=\"id\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            this.addChild(obj.name, obj);
             
             // UI Components Initialize
             obj = new Grid("grdList01","62","85","1009","108",null,null,null,null,null,null,this);
@@ -55,6 +65,26 @@
             obj = new Button("Button04","64","7","627","30",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_text("넥사 헨들러!!");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("Button05","67","478","486","32",null,null,null,null,null,null,this);
+            obj.set_taborder("7");
+            obj.set_text("members.do");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("Button06","68","521","486","32",null,null,null,null,null,null,this);
+            obj.set_taborder("8");
+            obj.set_text("sessionCheck.do");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("Button07","71","565","492","30",null,null,null,null,null,null,this);
+            obj.set_taborder("9");
+            obj.set_text("/sessionChk.do");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("Button08","64","405","214","32",null,null,null,null,null,null,this);
+            obj.set_taborder("10");
+            obj.set_text("doLogin.do");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -220,6 +250,73 @@
         	console.log("---------");
         };
 
+        this.Button05_onclick = function(obj,e)
+        {
+          var sId    = "baseId";
+          var sUrl   = "http://localhost:9191/members.do";
+          var sInDs  = "dsInLogin=dsInLogin";
+          var sOutDs = "dsInLogin=dsInLogin";
+          var sArg   = "";
+          var sfunc  = "fn_callback";
+
+          this.transaction(sId,sUrl,sInDs,sOutDs,sArg,sfunc);
+        };
+
+
+        this.fn_callback = function(sId,nErrorCode,sErrorMSG)
+        {
+          if(nErrorCode == 0)
+          {
+            //완료 확인
+        	console.log("members.do--------------------------");
+            //trace(sId);
+          }
+        }
+
+        this.Button06_onclick = function(obj,e)
+        {
+        	var sId    = "sessionChk";
+          var sUrl   = "http://localhost:9191/sessionCheck.do";
+          var sInDs  = "dsInLogin=dsInLogin";
+          var sOutDs = "dsInLogin=dsInLogin";
+          var sArg   = "";
+          var sfunc  = "fn_callback_session_chk";
+
+          this.transaction(sId,sUrl,sInDs,sOutDs,sArg,sfunc);
+        };
+
+        this.fn_callback_session_chk = function(sId,nErrorCode,sErrorMSG){
+        	console.log("sId : " + sId);
+        }
+
+
+
+
+        this.Button07_onclick = function(obj,e)
+        {
+        	///sessionChk.do
+        	var sId    = "sessionChk";
+          var sUrl   = "http://localhost:9191/sessionChk.do";
+          var sInDs  = "dsInLogin=dsInLogin";
+          var sOutDs = "dsInLogin=dsInLogin";
+          var sArg   = "";
+          var sfunc  = "fn_callback_session_chk";
+
+          this.transaction(sId,sUrl,sInDs,sOutDs,sArg,sfunc);
+        };
+
+        this.Button08_onclick = function(obj,e)
+        {
+        	var sId    = "doLogin";
+          var sUrl   = "http://localhost:9191/doLogin.do";
+          var sInDs  = "dsInLogin=dsInLogin";
+          var sOutDs = "dsInLogin=dsInLogin";
+          var sArg   = "";
+          var sfunc  = "fn_callback_session_chk";
+
+          this.transaction(sId,sUrl,sInDs,sOutDs,sArg,sfunc);
+        };
+
         });
         
         // Regist UI Components Event
@@ -229,6 +326,10 @@
             this.Button01.addEventHandler("onclick",this.Button01_onclick,this);
             this.Button02.addEventHandler("onclick",this.Button02_onclick,this);
             this.Button04.addEventHandler("onclick",this.Button04_onclick,this);
+            this.Button05.addEventHandler("onclick",this.Button05_onclick,this);
+            this.Button06.addEventHandler("onclick",this.Button06_onclick,this);
+            this.Button07.addEventHandler("onclick",this.Button07_onclick,this);
+            this.Button08.addEventHandler("onclick",this.Button08_onclick,this);
         };
         this.loadIncludeScript("Form_Work.xfdl");
         this.loadPreloadList();

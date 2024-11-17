@@ -31,6 +31,10 @@
         <Button id="Button02" taborder="4" text="filetransuupdown" left="489" top="47" width="199" height="33" onclick="Button02_onclick"/>
         <Button id="Button03" taborder="5" text="E:\ExtFileUpDownload" left="598" top="235" width="208" height="81"/>
         <Button id="Button04" taborder="6" text="넥사 헨들러!!" left="64" top="7" width="627" height="30" onclick="Button04_onclick"/>
+        <Button id="Button05" taborder="7" text="members.do" left="67" top="478" width="486" height="32" onclick="Button05_onclick"/>
+        <Button id="Button06" taborder="8" text="sessionCheck.do" left="68" top="521" width="486" height="32" onclick="Button06_onclick"/>
+        <Button id="Button07" taborder="9" text="/sessionChk.do" left="71" top="565" width="492" height="30" onclick="Button07_onclick"/>
+        <Button id="Button08" taborder="10" text="doLogin.do" left="64" top="405" width="214" height="32" onclick="Button08_onclick"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -52,6 +56,29 @@
             <Col id="ID">3</Col>
             <Col id="NAME">3</Col>
           </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsRequestParam">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">id</Col>
+            <Col id="name">kims702</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsInLogin">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
         </Rows>
       </Dataset>
     </Objects>
@@ -198,6 +225,73 @@ this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 this.Button04_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	console.log("---------");
+};
+
+this.Button05_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+  var sId    = "baseId";
+  var sUrl   = "http://localhost:9191/members.do";
+  var sInDs  = "dsInLogin=dsInLogin";
+  var sOutDs = "dsInLogin=dsInLogin";
+  var sArg   = "";
+  var sfunc  = "fn_callback";
+  
+  this.transaction(sId,sUrl,sInDs,sOutDs,sArg,sfunc);
+};
+ 
+
+this.fn_callback = function(sId,nErrorCode,sErrorMSG)
+{
+  if(nErrorCode == 0)
+  {
+    //완료 확인
+	console.log("members.do--------------------------");
+    //trace(sId);
+  }
+}
+
+this.Button06_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sId    = "sessionChk";
+  var sUrl   = "http://localhost:9191/sessionCheck.do";
+  var sInDs  = "dsInLogin=dsInLogin";
+  var sOutDs = "dsInLogin=dsInLogin";
+  var sArg   = "";
+  var sfunc  = "fn_callback_session_chk";
+  
+  this.transaction(sId,sUrl,sInDs,sOutDs,sArg,sfunc);
+};
+
+this.fn_callback_session_chk = function(sId,nErrorCode,sErrorMSG){
+	console.log("sId : " + sId);
+}
+
+
+
+
+this.Button07_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	///sessionChk.do
+	var sId    = "sessionChk";
+  var sUrl   = "http://localhost:9191/sessionChk.do";
+  var sInDs  = "dsInLogin=dsInLogin";
+  var sOutDs = "dsInLogin=dsInLogin";
+  var sArg   = "";
+  var sfunc  = "fn_callback_session_chk";
+  
+  this.transaction(sId,sUrl,sInDs,sOutDs,sArg,sfunc);
+};
+
+this.Button08_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sId    = "doLogin";
+  var sUrl   = "http://localhost:9191/doLogin.do";
+  var sInDs  = "dsInLogin=dsInLogin";
+  var sOutDs = "dsInLogin=dsInLogin";
+  var sArg   = "";
+  var sfunc  = "fn_callback_session_chk";
+  
+  this.transaction(sId,sUrl,sInDs,sOutDs,sArg,sfunc);
 };
 ]]></Script>
   </Form>

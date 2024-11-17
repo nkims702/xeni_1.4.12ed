@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,8 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import com.nexacro.uiadapter.spring.core.annotation.ParamDataSet;
 import com.nexacro.uiadapter.spring.core.data.NexacroResult;
 
+
+@Controller
 public class LoginController {
 	
 	
@@ -30,7 +33,7 @@ public class LoginController {
 			Map<String, String> loginInfo = new HashMap<>();
 			loginInfo.put("ID", "ID-info");
 			
-			request.getSession().setAttribute("dsLoginUser", loginInfo);
+			request.getSession().setAttribute("userInfo", loginInfo);
 			HttpSession session = request.getSession();
 			session.setAttribute("dsLoginUser", loginInfo);
 			session.setMaxInactiveInterval(24*60*60);
@@ -48,20 +51,27 @@ public class LoginController {
 
 		NexacroResult result = new NexacroResult(); 
 		ModelAndView modelAndView = new ModelAndView(new MappingJackson2JsonView());; 
-		
+		Map<String, String> loginInfo = new HashMap<>();
 		try {
-			System.out.println("request.getRemoteHost() :" + request.getRemoteHost());
-			Map<String, String> loginInfo = new HashMap<>();
-			loginInfo.put("ID", "ID-info");
 			
-			request.getSession().setAttribute("dsLoginUser", loginInfo);
-			HttpSession session = request.getSession();
-			session.setAttribute("dsLoginUser", loginInfo);
-			session.setMaxInactiveInterval(24*60*60);
 			
+			//request.getSession().setAttribute("dsLoginUser", loginInfo);
+//			HttpSession session = request.getSession();
+//			session.setAttribute("dsLoginUser", loginInfo);
+//			session.setMaxInactiveInterval(24*60*60);
+			
+			
+			Object userInfo = request.getSession().getAttribute("userInfo");
+			if( userInfo == null) {
+				System.out.println("session is null");
+			}else {
+				System.out.println("userinfo : " + userInfo.toString());
+			}
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
+		
+		result.addDataSet("dsInLogin", loginInfo);
 		
 		return result;
 	}

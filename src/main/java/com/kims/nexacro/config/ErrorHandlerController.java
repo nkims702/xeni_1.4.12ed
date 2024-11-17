@@ -36,18 +36,28 @@ public class ErrorHandlerController implements ErrorController{
     	ModelAndView mav = new ModelAndView("error");
     	
     	Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-    	
+    	if( status != null) {
     	int statusCode = Integer.valueOf(status.toString());
     	
-    	mav.addObject("error");
+    	
 
     	System.out.println("##############################################");
     	System.out.println("statusCode ["+statusCode+"]");
     	System.out.println("##############################################");
     	System.out.println("##############################################");
+    	}else {
+    		System.out.println("##############################################");
+        	System.out.println("statusCode [null]");
+        	System.out.println("##############################################");
+        	System.out.println("##############################################");
+    	}
+    	//String projectUrl = "redirect:http:/error";
+        //return new ModelAndView("redirect:" + projectUrl);
     	
-    	return mav;
     	//return "error";
+    	
+    	//mav.addObject("error");
+    	return mav;
     } 
 	
 }

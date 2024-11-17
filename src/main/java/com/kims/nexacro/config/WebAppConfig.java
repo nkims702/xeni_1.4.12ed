@@ -2,13 +2,14 @@ package com.kims.nexacro.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
-//@Configuration
+@Configuration
 public class WebAppConfig implements WebMvcConfigurer{
 	
 	public static final String ALLOWED_METHOD_NAMES = "GET,HEAD,POST,PUT,DELETE,TRACE,OPTIONS,PATCH";
@@ -79,16 +80,23 @@ public class WebAppConfig implements WebMvcConfigurer{
 //		registry.addInterceptor(localeChangeInterceptor());
 //	}
 	
-//	@Override
-//	public void addCorsMappings(CorsRegistry registry) {
-//		// TODO Auto-generated method stub
-//		//registry.addMapping("/**").allowedMethods(ALLOWED_METHOD_NAMES.split(",")).exposedHeaders(HttpHeaders.LOCATION);
-//		//registry.addMapping("/**").allowedOrigins("http://localhost:8081").allowedMethods("*").allowCredentials(false).maxAge(3000);
-//		
-//		registry.addMapping("/**").allowedOrigins("*")
-//		.allowedMethods("GET","POST","PUT","DELETE")
-//		.allowedHeaders("Authorization", "Content-Type").exposedHeaders("Custom-Header").allowCredentials(true).maxAge(3600);
-//	}
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		// TODO Auto-generated method stub
+		//WebMvcConfigurer.super.addInterceptors(registry);
+		registry.addInterceptor(new AuthInterceptor());
+	}
+	
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		// TODO Auto-generated method stub
+		//registry.addMapping("/**").allowedMethods(ALLOWED_METHOD_NAMES.split(",")).exposedHeaders(HttpHeaders.LOCATION);
+		//registry.addMapping("/**").allowedOrigins("http://localhost:8081").allowedMethods("*").allowCredentials(false).maxAge(3000);
+		
+		registry.addMapping("/**").allowedOrigins("*")
+		.allowedMethods("GET","POST","PUT","DELETE");
+		//.allowedHeaders("Authorization", "Content-Type").exposedHeaders("Custom-Header").allowCredentials(true).maxAge(3600);
+	}
 	
 	
 }
