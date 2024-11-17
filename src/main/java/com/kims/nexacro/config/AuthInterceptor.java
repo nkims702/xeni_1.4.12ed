@@ -30,11 +30,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     			String fileName = "";
         		String fileNameExtension = "";
         		
-        		System.out.println("find fileName : " + fileName + ", fileNameExtension : " + fileNameExtension + ", 확장자 찾기 :" + txtExt);
+        		//System.out.println("find fileName : " + fileName + ", fileNameExtension : " + fileNameExtension + ", 확장자 찾기 :" + txtExt);
     			
         		StringTokenizer st = new StringTokenizer(txtExt, ".");
         		try {
-        			int tokensIndx = 0;
         			
         			int tokensSize = st.countTokens();
         			String[] tokenArray = new String[tokensSize];
@@ -46,12 +45,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	        			
 	        			for( int i = 0 ; i < tokensSize; i++) {
 	        				String _strTokensValue = st.nextToken();
-	        				System.out.println("tokens size : "+tokensSize+" tokens ["+i+"] : " + _strTokensValue);
 	        				tokenArray[i] = _strTokensValue;
 	        			}
-	        			
-	        			System.out.println("확장자 #########################################################################################[ " + tokenArray[tokensSize-1] + " ]");
-	        			
+	        			fileName = tokenArray[tokensSize-2];
+	        			fileNameExtension = tokenArray[tokensSize-1];
 	        		}
         		}catch (Exception e) {
         			e.getStackTrace();
@@ -74,8 +71,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         		            // 로그인하지 않은 사용자일 경우 로그인 페이지로 이동
         		            //response.sendRedirect("/error");
         		            //return false;
-        		            
+//        		            return false;
         		            throw new Exception("current user is not logined");
+        		            
+        		            
         		        }else {
         		        	System.out.println("current user is logined");
         		        	
