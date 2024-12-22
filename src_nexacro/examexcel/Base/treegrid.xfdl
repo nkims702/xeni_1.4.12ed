@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="treegrid" width="1280" height="960" titletext="New Form">
+    <Layouts>
+      <Layout height="960" width="1280">
+        <Grid id="Grid00" taborder="3" left="40.00" top="75" width="470" height="405" binddataset="Dataset01" autofittype="col" treeinitstatus="expand,all" treeusecheckbox="false">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="36"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:data" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:level" treestate="bind:level"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Edit id="Edit00" taborder="1" left="40" top="29" width="372" height="38"/>
+        <Button id="Button00" taborder="2" text="Button00" left="424" top="31" width="84" height="36" onclick="Button00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset01">
+        <ColumnInfo>
+          <Column id="data" type="STRING" size="256"/>
+          <Column id="level" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="data">내 PC</Col>
+            <Col id="level">0</Col>
+          </Row>
+          <Row>
+            <Col id="data">다운로드</Col>
+            <Col id="level">1</Col>
+          </Row>
+          <Row>
+            <Col id="data">동영상</Col>
+            <Col id="level">1</Col>
+          </Row>
+          <Row>
+            <Col id="data">문서</Col>
+            <Col id="level">1</Col>
+          </Row>
+          <Row>
+            <Col id="data">바탕 화면</Col>
+            <Col id="level">1</Col>
+          </Row>
+          <Row>
+            <Col id="data">사진</Col>
+            <Col id="level">1</Col>
+          </Row>
+          <Row>
+            <Col id="data">저장된 사진</Col>
+            <Col id="level">2</Col>
+          </Row>
+          <Row>
+            <Col id="data">카메라 앨범</Col>
+            <Col id="level">2</Col>
+          </Row>
+          <Row>
+            <Col id="data">음악</Col>
+            <Col id="level">1</Col>
+          </Row>
+          <Row>
+            <Col id="data">로컬 디스크 (C:)</Col>
+            <Col id="level">1</Col>
+          </Row>
+          <Row>
+            <Col id="data">Program Files</Col>
+            <Col id="level">2</Col>
+          </Row>
+          <Row>
+            <Col id="data">Program Files (x86)</Col>
+            <Col id="level">2</Col>
+          </Row>
+          <Row>
+            <Col id="data">Windows</Col>
+            <Col id="level">2</Col>
+          </Row>
+          <Row>
+            <Col id="data">네트워크</Col>
+            <Col id="level">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>
