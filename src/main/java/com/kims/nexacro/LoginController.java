@@ -75,4 +75,16 @@ public class LoginController {
 		
 		return result;
 	}
+	
+	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
+	 public ModelAndView  logout(HttpServletRequest req){
+	  System.out.println("/logout !!!!");
+	   
+	  HttpSession session = req.getSession();
+	  System.out.println("chksession session id : " + session.getId() + ", session test value : " + session.getAttribute("test"));
+	   
+	  
+	  return new ModelAndView("index_logout");
+
+	 }
 }

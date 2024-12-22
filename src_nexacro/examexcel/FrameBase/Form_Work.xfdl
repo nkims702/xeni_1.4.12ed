@@ -3,38 +3,42 @@
   <Form id="Form_Work" width="1280" height="670" titletext="Form_Work">
     <Layouts>
       <Layout width="1280" height="670" screenid="Desktop_screen">
-        <Grid id="grdList01" taborder="0" left="62" top="85" width="1009" height="108" binddataset="dsExportExcelList">
+        <Grid id="grdList01" taborder="0" left="62.00" top="85" width="1009" height="285" binddataset="dsExportExcelList">
           <Formats>
             <Format id="default">
               <Columns>
                 <Column size="80"/>
-                <Column size="80"/>
+                <Column size="200"/>
+                <Column size="714"/>
               </Columns>
               <Rows>
-                <Row band="head" size="24"/>
+                <Row size="24" band="head"/>
                 <Row size="24"/>
               </Rows>
               <Band id="head">
                 <Cell text="ID"/>
                 <Cell col="1" text="NAME"/>
+                <Cell col="2" text="Column0"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:ID"/>
                 <Cell col="1" text="bind:NAME"/>
+                <Cell col="2" text="bind:Column0"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Button id="Button00" taborder="1" text="Button port 8181 exam-nexacro-XExportImport" left="64.00" top="44" width="226" height="36" onclick="Button00_onclick"/>
-        <TextArea id="txtLog" taborder="2" left="64" top="220" width="491" height="168"/>
-        <Button id="Button01" taborder="3" text="testfile" left="311" top="45" width="155" height="36" onclick="Button01_onclick"/>
-        <Button id="Button02" taborder="4" text="filetransuupdown" left="489" top="47" width="199" height="33" onclick="Button02_onclick"/>
-        <Button id="Button03" taborder="5" text="E:\ExtFileUpDownload" left="598" top="235" width="208" height="81"/>
-        <Button id="Button04" taborder="6" text="넥사 헨들러!!" left="64" top="7" width="627" height="30" onclick="Button04_onclick"/>
-        <Button id="Button05" taborder="7" text="members.do" left="67" top="478" width="486" height="32" onclick="Button05_onclick"/>
-        <Button id="Button06" taborder="8" text="sessionCheck.do" left="68" top="521" width="486" height="32" onclick="Button06_onclick"/>
-        <Button id="Button07" taborder="9" text="/sessionChk.do" left="71" top="565" width="492" height="30" onclick="Button07_onclick"/>
-        <Button id="Button08" taborder="10" text="doLogin.do" left="64" top="405" width="214" height="32" onclick="Button08_onclick"/>
+        <Button id="Button00" taborder="1" text="Button port 8080 XExportImport.do" left="64.00" top="44" width="226" height="36" onclick="Button00_onclick"/>
+        <TextArea id="txtLog" taborder="2" left="64.00" top="430" width="1007" height="218"/>
+        <Button id="Button01" taborder="3" text="testfile" left="311" top="45" width="155" height="36" onclick="Button01_onclick" visible="false"/>
+        <Button id="Button02" taborder="4" text="filetransuupdown" left="489" top="47" width="199" height="33" onclick="Button02_onclick" visible="false"/>
+        <Button id="Button04" taborder="5" text="넥사 헨들러!!" left="64" top="7" width="627" height="30" onclick="Button04_onclick"/>
+        <Button id="Button03" taborder="6" text="모달리스팝업" left="702" top="50" width="130" height="32" onclick="Button03_onclick"/>
+        <Button id="Button05" taborder="7" text="Nexacro Exception" left="860" top="50" width="165" height="35" onclick="Button05_onclick"/>
+        <Button id="Btn_Export_Page" taborder="8" text="ExcelExport_curve" left="1041" top="40" width="179" height="40" onclick="Btn_Export_Page_onclick"/>
+        <Button id="treegrid" taborder="9" text="Button06" left="1100" top="105" width="156" height="45" onclick="treegrid_onclick"/>
+        <Button id="menusearch" taborder="10" text="menusearch" left="1095" top="175" width="161" height="46" onclick="menusearch_onclick"/>
+        <Button id="menusearch_expansion" taborder="11" text="menusearch_expansion" left="1096" top="236" width="165" height="44" onclick="menusearch_expansion_onclick"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -42,19 +46,23 @@
         <ColumnInfo>
           <Column id="ID" type="STRING" size="256"/>
           <Column id="NAME" type="STRING" size="256"/>
+          <Column id="Column0" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row>
-            <Col id="ID">1</Col>
-            <Col id="NAME">1</Col>
+            <Col id="ID">export-path</Col>
+            <Col id="NAME">ext://../export</Col>
+            <Col id="Column0">프로젝트 홈 위치에서 한단계 위의 export 위치에 파일이 생성이 됨. 이후 다운로드는 실행 안됨</Col>
           </Row>
           <Row>
-            <Col id="ID">2</Col>
-            <Col id="NAME">2</Col>
+            <Col id="ID">export-path</Col>
+            <Col id="NAME">ext://./export</Col>
+            <Col id="Column0">프로젝트 홈 위치 아래 export 에 임시파일 생성이 됨. 이후 다운로드는 실행 안됨.</Col>
           </Row>
           <Row>
-            <Col id="ID">3</Col>
-            <Col id="NAME">3</Col>
+            <Col id="ID">export-path</Col>
+            <Col id="NAME">ext:///export</Col>
+            <Col id="Column0">최상위 드라이브 아래 export에 임시파일 생성이 됨. 이후 다운로드는 실행 안됨.</Col>
           </Row>
         </Rows>
       </Dataset>
@@ -83,8 +91,9 @@
       </Dataset>
     </Objects>
     <Script type="xscript5.1"><![CDATA[
+// statidc
 // http://localhost:8181/nexacro-xeni-java/XExportImport
-this.exportUrl = "/nexacro-xeni-java/XExportImport";
+this.exportUrl = "/XExportImport.do";
 
 //this.exportUrl = "http://localhost:8181/XExportImport";
 
@@ -119,7 +128,7 @@ this.gfnCreateExportObject = function(pFileName){
 
 this.gfnBasicExport = function(pFileName)
 {
-    var sFileName = "ExportData(BasicExport)";
+    var sFileName = "ExportData_BasicExport";
     if(!this.gfnIsNull(pFileName))
     {
         sFileName = pFileName;
@@ -230,7 +239,7 @@ this.Button04_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 this.Button05_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
   var sId    = "baseId";
-  var sUrl   = "http://localhost:9191/members.do";
+  var sUrl   = "http://localhost:9191/sessionChk.do";
   var sInDs  = "dsInLogin=dsInLogin";
   var sOutDs = "dsInLogin=dsInLogin";
   var sArg   = "";
@@ -264,6 +273,8 @@ this.Button06_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 
 this.fn_callback_session_chk = function(sId,nErrorCode,sErrorMSG){
 	console.log("sId : " + sId);
+	console.log("nErrorCode : " + nErrorCode);
+	console.log("sErrorMSG : " + sErrorMSG);
 }
 
 
@@ -292,6 +303,91 @@ this.Button08_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
   var sfunc  = "fn_callback_session_chk";
   
   this.transaction(sId,sUrl,sInDs,sOutDs,sArg,sfunc);
+};
+
+this.Button03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nW = 1000;
+	var nH = 700;
+
+	var objApp = nexacro.getApplication();
+	var nLeft = (objApp.mainframe.width  / 2) - Math.round(nW / 2);
+	var nTop  = (objApp.mainframe.height / 2) - Math.round(nH / 2) ;        
+	nLeft = system.clientToScreenX(this, nLeft);
+	nTop  = system.clientToScreenY(this, nTop);
+
+// 	var objParam = {param1:this.edt_param1.value
+// 				  , param2:this.edt_param2.value
+// 				  , param3:this.ds_parent};
+	var objParam = { };
+	var sOpenStyle = "dragmovetype=all"
+				 + " resizable=true"
+				 + " titletext=Modeless"
+				 + " showtitlebar=true"
+				 + " showstatusbar=false";
+
+	nexacro.open("chf_popup3"
+			   , "FrameBase::Form_Work.xfdl"
+			   , this.getOwnerFrame()
+			   , objParam
+			   , sOpenStyle
+			   , nLeft
+			   , nTop
+			   , nW
+			   , nH
+			   , this);
+};
+
+
+this.Btn_Export_Page_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nW = 1000;
+	var nH = 700;
+
+	var objApp = nexacro.getApplication();
+	var nLeft = (objApp.mainframe.width  / 2) - Math.round(nW / 2);
+	var nTop  = (objApp.mainframe.height / 2) - Math.round(nH / 2) ;        
+	nLeft = system.clientToScreenX(this, nLeft);
+	nTop  = system.clientToScreenY(this, nTop);
+
+// 	var objParam = {param1:this.edt_param1.value
+// 				  , param2:this.edt_param2.value
+// 				  , param3:this.ds_parent};
+	var objParam = { };
+	var sOpenStyle = "dragmovetype=all"
+				 + " resizable=true"
+				 + " titletext=Modeless"
+				 + " showtitlebar=true"
+				 + " showstatusbar=false";
+
+	nexacro.open("chf_popup3"
+			   , "FrameBase::ExcelExport_curve.xfdl"
+			   , this.getOwnerFrame()
+			   , objParam
+			   , sOpenStyle
+			   , nLeft
+			   , nTop
+			   , nW
+			   , nH
+			   , this);
+};
+
+
+
+this.treegrid_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.go("Base::treegrid.xfdl");
+};
+
+this.menusearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.go("Base::menusearch.xfdl");
+};
+
+this.menusearch_expansion_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	this.go("Base::menusearch_expansion.xfdl");
 };
 ]]></Script>
   </Form>

@@ -1,12 +1,20 @@
 package com.kims.nexacro.config;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+
+import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.nexacro.uiadapter.spring.core.servlet.NexacroInterceptor;
 
 
 @Configuration
@@ -41,20 +49,20 @@ public class WebAppConfig implements WebMvcConfigurer{
 //		registry.addResourceHandler("/*.js").addResourceLocations("classpath:/static");
 	}
 	
-/*
-	@Bean 
-	public ReloadableResourceBundleMessageSource messageSource() {
-		ReloadableResourceBundleMessageSource source = new
-				ReloadableResourceBundleMessageSource();
 
-		source.setBasename("classpath:/messages/message");
-		source.setDefaultEncoding("UTF-8"); source.setCacheSeconds(60);
-		source.setUseCodeAsDefaultMessage(true);
-		
-		return source;
-		
-	}
-	*/
+	/*
+	 * @Bean public ReloadableResourceBundleMessageSource messageSource() {
+	 * ReloadableResourceBundleMessageSource source = new
+	 * ReloadableResourceBundleMessageSource();
+	 * 
+	 * source.setBasename("classpath:/messages/message");
+	 * source.setDefaultEncoding("UTF-8"); source.setCacheSeconds(60);
+	 * source.setUseCodeAsDefaultMessage(true);
+	 * 
+	 * return source;
+	 * 
+	 * }
+	 */
 
 	
 	/*
@@ -85,6 +93,7 @@ public class WebAppConfig implements WebMvcConfigurer{
 		// TODO Auto-generated method stub
 		//WebMvcConfigurer.super.addInterceptors(registry);
 		registry.addInterceptor(new AuthInterceptor());
+		registry.addInterceptor(new NexacroInterceptor());
 	}
 	
 	@Override
@@ -97,6 +106,8 @@ public class WebAppConfig implements WebMvcConfigurer{
 		.allowedMethods("GET","POST","PUT","DELETE");
 		//.allowedHeaders("Authorization", "Content-Type").exposedHeaders("Custom-Header").allowCredentials(true).maxAge(3600);
 	}
+	
+	
 	
 	
 }

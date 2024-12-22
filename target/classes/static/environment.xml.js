@@ -93,7 +93,191 @@ if (nexacro.Environment)
 
 	
     // User Script
+    env.registerScript("environment.xml", function() {
+    if (nexacro._Browser != "Runtime")
+    {
+        "use strict";
+    	   nexacro._destroy_hidden_frame = function (form_id, pThis, type)
+            {
+                // API변경하기 이전동작의 호환성 유지를 위해 null처리 추가.
+                if (type == "fileupload" || type == "import" || type == null)
+                {
+                    var _doc = nexacro._managerFrameDoc;
+                    var manager = nexacro._IframeManager;
+                    var form = manager.search_form(form_id);
+                    var inputlist = manager.formlist[form.idx].inputlist;
 
+                    var inputnode = null;
+                    if (form && form.node)
+                    {
+                        while (inputlist.length > 0)
+                        {
+                            inputnode = inputlist.pop();
+                            delete inputnode._callbackList;
+                            inputnode._callbackList = null;
+                            nexacro.__removeDOMNode(form.node, inputnode);
+                            //inputnode = null;
+                        }
+                        var ret_iframe = manager.formlist[form.idx].uploadiframe;
+                        if (ret_iframe)
+                        {
+                            nexacro._stopSysObserving(ret_iframe, "load", "onload", nexacro._fileinputhandler_onload_forward);
+                            delete ret_iframe._callbackList;
+                            ret_iframe._callbackList = null;
+                            nexacro.__removeDOMNode(form.node, ret_iframe);
+                            //ret_iframe = null;
+                        }
+                        nexacro.__removeDOMNode(_doc.body, form.node);
+                        manager.formlist.splice(form.idx, 1);
+                        form.node = null;
+                    }
+                }
+            };
+
+            if (nexacro._Browser == "Safari")
+            {
+                nexacro._download = function (url, is_popup_frame)
+                {
+                    var download = window.open('');
+                    download.location = url;
+                    download.setTimeout('window.close();', 500);
+                };
+
+                nexacro._downloadExport = nexacro._download;
+            }
+            else if ((nexacro._Browser == "MobileSafari" || nexacro._Browser == "Chrome") && nexacro._OS == "iOS")
+            {
+                nexacro._download = function (url, is_popup_frame)
+                {
+                    if (nexacro._isHybrid())
+                    {
+                        var params = '{"url":"' + url + '"}';
+                        var jsonstr = '{"id":"", "div":"Browser", "method":"execBrowser", "params":' + params + '}';
+
+                        nexacro.Device.exec(jsonstr);
+                    }
+                    else
+                    {
+                        var bChange = false;
+
+                        var version_arr = nexacro._OSVersion.split(".");
+                        var major_version = version_arr[0];
+                        var minor_version = version_arr[1];
+                        var third_version = version_arr.length == 3 ? version_arr[2] : null;
+
+                        if (major_version >= 8 && minor_version >= 1)
+                        {
+                            if (minor_version == 1)
+                            {
+                                if (third_version && third_version >= 3)
+                                {
+                                    bChange = true;
+                                }
+                            }
+                            else
+                            {
+                                bChange = true;
+                            }
+                        }
+
+                        if (bChange)
+                        {
+                            var download = window.open('');
+                            setTimeout(function () { download.location = url; }, 1200);
+                        }
+                        else
+                        {
+                            window.open(url);
+                        }
+                    }
+                };
+
+                nexacro._downloadExport = nexacro._download;
+            }
+            else
+            {
+                nexacro._download = function (url, is_popup_frame)
+                {
+                    if (is_popup_frame)
+                    {
+                        window.open(url, "_self");
+                    }
+                    else
+                    {
+                        window.open(url);
+                    }
+                };
+
+    			if (nexacro._Browser == "IE" || nexacro._Browser == "Chrome" || nexacro._Browser == "Gecko" || nexacro._Browser == "Opera" || nexacro._Browser == "Edge")
+                {
+                    nexacro._downloadExport = function (url, is_popup_frame, evtTarget) //  window is closed  when file(office2007 type) opened in ie7~8
+                    {
+                        // nexacro._downloadTransferSubmit(null, url, nexacro._emptyFn, "");
+                        var index = url.lastIndexOf(".");
+                        var extension;
+                        if (index > 0)
+                        {
+                            extension = url.substr(index + 1);
+                            if (extension == "xlsx" || extension == "xls")
+                            {
+                                nexacro._stopSysObserving(window, "beforeunload", "onbeforeunload", window.nexacro_HTMLSysEvent._syshandler_onbeforeclose_forward);
+
+                                if (nexacro._Browser == "IE" && nexacro._BrowserVersion < 10)
+                                    window.location.href = url;
+                                else
+                                    nexacro._downloadTransfer(null, url, null, evtTarget, "GET");
+
+                                setTimeout(function ()
+                                {
+                                    nexacro._observeSysEvent(window, "beforeunload", "onbeforeunload", window.nexacro_HTMLSysEvent._syshandler_onbeforeclose_forward);
+                                }, 1000);
+
+                                return;
+                            }
+                        }
+
+    					trace("window.open 주석 처리");
+                        //window.open(url);	// 여기! excel export 절대 경로 이슈
+                    };
+                }
+                else
+                {
+                    nexacro._downloadExport = nexacro._download;
+                }
+            }
+
+    		if ((nexacro._Browser == "IE" && nexacro._BrowserVersion > 8) || (nexacro._Browser == "Edge" && nexacro._BrowserType == "Edge"))
+            {
+                nexacro._append_hidden_item = function (form_id, input_id, callback_fn, pThis, handle, multiselect)
+    				{
+    					var _doc;
+    					_doc = nexacro._managerFrameDoc;
+
+    					var manager = nexacro._IframeManager;
+    					var form = manager.search_form(form_id);
+    					var input = null;
+    					if (form && form.node)
+    					{
+    						var node = form.node;
+    						input = _doc.createElement("INPUT");
+    						input.type = "file";
+    						if (multiselect && nexacro._BrowserVersion > 9)
+    						{
+    							input.multiple = multiselect;
+    						}
+    						input.name = input_id;
+    						input._callbackList = [{ target: pThis, callback: callback_fn }];
+    						manager.formlist[form.idx].inputlist.push(input);
+
+    						node.appendChild(input);
+    						nexacro._observeSysEvent(input, "change", "onchange", nexacro._fileinputhandler_onchange_forward);
+    					}
+    					pThis._input_node = input;
+    				};
+    			}
+    }
+
+    });
 					
     env = null;
     nexacro._getExtUserCssScreenType = nexacro._getCurrentScreenType;

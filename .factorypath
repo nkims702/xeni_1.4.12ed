@@ -24,6 +24,7 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-web/5.1.13.RELEASE/spring-web-5.1.13.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-beans/5.1.13.RELEASE/spring-beans-5.1.13.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-webmvc/5.1.13.RELEASE/spring-webmvc-5.1.13.RELEASE.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-aop/5.1.13.RELEASE/spring-aop-5.1.13.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-context/5.1.13.RELEASE/spring-context-5.1.13.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-expression/5.1.13.RELEASE/spring-expression-5.1.13.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-starter-web-services/2.1.12.RELEASE/spring-boot-starter-web-services-2.1.12.RELEASE.jar" enabled="true" runInBatchMode="false"/>
@@ -79,14 +80,10 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/com/zaxxer/SparseBitSet/1.2/SparseBitSet-1.2.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/xmlbeans/xmlbeans/5.0.3/xmlbeans-5.0.3.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="D:\GitHub\exam-nexacro-XExportImport\src\main\webapp\WEB-INF\lib\cos.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="D:\GitHub\exam-nexacro-XExportImport\src\main\webapp\WEB-INF\lib\nexacro-xapi-java-1.0.12.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="D:\GitHub\exam-nexacro-XExportImport\src\main\webapp\WEB-INF\lib\nexacro-xeni-java-1.4.13.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="D:\GitHub\exam-nexacro-XExportImport\src\main\webapp\WEB-INF\lib\uiadapter-spring-core-1.0.0-SNAPSHOT.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="D:\GitHub\exam-nexacro-XExportImport\src\main\webapp\WEB-INF\lib\uiadapter-spring-dataaccess-1.0.0-SNAPSHOT.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="D:\GitHub\exam-nexacro-XExportImport\src\main\webapp\WEB-INF\lib\uiadapter-spring-excel-1.0.0-SNAPSHOT.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-starter-security/2.7.0/spring-boot-starter-security-2.7.0.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-aop/5.1.13.RELEASE/spring-aop-5.1.13.RELEASE.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/security/spring-security-config/5.1.7.RELEASE/spring-security-config-5.1.7.RELEASE.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/security/spring-security-core/5.1.7.RELEASE/spring-security-core-5.1.7.RELEASE.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/security/spring-security-web/5.1.7.RELEASE/spring-security-web-5.1.7.RELEASE.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="D:\GitHub\exam-nexacro-XExportImport\src\main\webapp\WEB-INF\lib\nexacro-xeni-java-1.4.12ed.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="D:\GitHub\exam-nexacro-XExportImport\src\main\webapp\WEB-INF\lib\uiadapter-spring-core-1.0.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="D:\GitHub\exam-nexacro-XExportImport\src\main\webapp\WEB-INF\lib\uiadapter-spring-dataaccess-1.0.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="D:\GitHub\exam-nexacro-XExportImport\src\main\webapp\WEB-INF\lib\uiadapter-spring-excel-1.0.0.jar" enabled="true" runInBatchMode="false"/>
 </factorypath>

@@ -8,103 +8,62 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 
-//@Configuration
+@Configuration
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
     //private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
     
     @Override
-    public boolean preHandle(HttpServletRequest request,  HttpServletResponse response,  Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request,  HttpServletResponse response,  Object handler) throws NexacroException {
         
     	
     	String requestUri = request.getRequestURI();
     	String[] splitRequestUri = requestUri.split("/");
+    	System.out.println("AuthInterceptor preHandle -----call requestUri : " + requestUri);
+    	HttpSession session = request.getSession();
     	
-    	if( splitRequestUri != null && splitRequestUri.length > 0 ) {
-    		String txtExt = splitRequestUri[splitRequestUri.length -1];
-    		
-    		try {
-    			String fileName = "";
-        		String fileNameExtension = "";
-        		
-        		//System.out.println("find fileName : " + fileName + ", fileNameExtension : " + fileNameExtension + ", 확장자 찾기 :" + txtExt);
-    			
-        		StringTokenizer st = new StringTokenizer(txtExt, ".");
-        		try {
-        			
-        			int tokensSize = st.countTokens();
-        			String[] tokenArray = new String[tokensSize];
-	        		while( st.hasMoreTokens()) {
-//	        			if(tokensIndx == 0 ) {
-//	        				fileName = st.nextToken();
-//	        			}
-//	        			fileNameExtension = st.nextToken();
-	        			
-	        			for( int i = 0 ; i < tokensSize; i++) {
-	        				String _strTokensValue = st.nextToken();
-	        				tokenArray[i] = _strTokensValue;
-	        			}
-	        			fileName = tokenArray[tokensSize-2];
-	        			fileNameExtension = tokenArray[tokensSize-1];
-	        		}
-        		}catch (Exception e) {
-        			e.getStackTrace();
-        			System.out.println(e.getMessage());
-				}
-        		
-        		if( !fileNameExtension.equals("") &&fileNameExtension.equals("do")) {
-        			System.out.println("find do fileName : " + fileName + ", fileNameExtension : " + fileNameExtension + ", 확장자 찾기 :" + txtExt);
-        			
-        			
-        			if( "doLogin".equals(fileName)) {
-        				
-        			}else {
-        		    	HttpSession session = request.getSession();
-        		        
-        		        if(session.getAttribute("userInfo") == null) {
-        		        
-        		            System.out.println("current user is not logined");
-        		            
-        		            // 로그인하지 않은 사용자일 경우 로그인 페이지로 이동
-        		            //response.sendRedirect("/error");
-        		            //return false;
-//        		            return false;
-        		            throw new Exception("current user is not logined");
-        		            
-        		            
-        		        }else {
-        		        	System.out.println("current user is logined");
-        		        	
-        		        }
-        				
-        			}
-        			
-        			
-        			
-        		}
-    			
-    		}catch (Exception e) {
-    			e.getStackTrace();
-    			throw new Exception(e);
-			}
-    		
+    	
+    	if( requestUri.indexOf(".do") > 0 ) {
+    	
+	    	if("/logout.do".equals(requestUri)
+	    				|| "/".equals(requestUri) 
+	    				 || "/index.html".equals(requestUri) 
+	    	) {}
+	    	else {
+	
+	            // login처리를 담당하는 사용자 정보를 담고 있는 객체를 가져옴
+	            Object obj = session.getAttribute("userInfo");
+	              
+	            if ( obj == null ){
+	                // 로그인이 안되어 있는 상태임으로 로그인 폼으로 다시 돌려보냄(redirect)
+	            	
+	            	
+	            	new NexacroException("is not login");//c.nexacro.java.xapi.tx.PlatformRequest  [0;39m [2m:[0;39m Checking InputStream failed
+	                //response.sendRedirect("/logout.do");
+	                //return false; // 더이상 컨트롤러 요청으로 가지 않도록 false로 반환함
+	            }
+	            
+	    		
+	    	}
     	}
-
-//        
-        // 로그인한 사용자일 경우 Controller 호출
-        return true;
+    	
+    	  
+        // preHandle의 return은 컨트롤러 요청 uri로 가도 되냐 안되냐를 허가하는 의미임
+        // 따라서 true로하면 컨트롤러 uri로 가게 됨.
+        return true; 
+    }
+    
+    
+ // 컨트롤러가 수행되고 화면이 보여지기 직전에 수행되는 메서드
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+            ModelAndView modelAndView) throws Exception {
+        // TODO Auto-generated method stub
+        super.postHandle(request, response, handler, modelAndView);
     }
 }
-
-
-/*
-Object userInfo = request.getSession().getAttribute("userInfo");
-if( userInfo == null) {
-	System.out.println("session is null");
-}else {
-	System.out.println("userinfo : " + userInfo.toString());
-}
-*/
+ 

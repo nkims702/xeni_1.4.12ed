@@ -87,33 +87,86 @@ public class NexacroConfig extends WebAppConfig implements WebMvcRegistrations{
 		//	super.configureHandlerExceptionResolvers(resolvers);
 	}
 	
-//	@Bean
-//	  public ServletRegistrationBean<GridExportImportServlet> gridExportImportServletBean() {
-//	      ServletRegistrationBean<GridExportImportServlet> bean = 
-//	          new ServletRegistrationBean<GridExportImportServlet>( new GridExportImportServlet()
-//	              , "/XExportImport"
-//	              );
-//	      bean.setLoadOnStartup(1);
-//	      return bean;
-//	  }
+	@Bean
+	  public ServletRegistrationBean<GridExportImportServlet> gridExportImportServletBean() {
+	      ServletRegistrationBean<GridExportImportServlet> bean = 
+	          new ServletRegistrationBean<GridExportImportServlet>( new GridExportImportServlet()
+	              , "/XExportImport.do"
+	              );
+	      bean.setLoadOnStartup(1);
+	      return bean;
+	  }
 	
-//	 @Bean
-//	 public ServletContextInitializer initializer() {
-//
-//	      return new ServletContextInitializer() {
-//	        /*
-//	         * 넥사크로플랫폼 엑셀 처리 모듈:nexacro17-xeni.jar를 이용한 엑셀 처리 설정
-//	        */ 
-//	        @Override
-//	        public void onStartup(ServletContext servletContext) throws ServletException {
-//	                servletContext.setInitParameter("export-path"       , "file:///C:/Temp/export/");  //엑셀 export 임시폴더 생성 기준 디렉터리
-//	                servletContext.setInitParameter("import-path"       , "file:///C:/Temp/import/");  //엑셀 import 임시폴더 생성 기준 디렉터리
-//	                servletContext.setInitParameter("monitor-enabled"   , "true");    //임시파일 삭제를 위한 모니터링 여부
-//	                servletContext.setInitParameter("monitor-cycle-time", "30");      //임시파일 삭제를 위한 모니터링 주기( default:분)
-//	                servletContext.setInitParameter("file-storage-time" , "10");      //임시파일 생성 디렉터리 모니터링 주기 (default:분)
-//	        }
-//	      };
-//	  }
+	@Bean
+	public ServletContextInitializer initializer() {
+
+	      return new ServletContextInitializer() {
+	        /*
+	         * 넥사크로플랫폼 엑셀 처리 모듈:nexacro17-xeni.jar를 이용한 엑셀 처리 설정
+	        */ 
+	        @Override
+	        public void onStartup(ServletContext servletContext) throws ServletException {
+	        	
+	        	servletContext.setInitParameter("export-path"       , "file://../export");  //엑셀 export 임시폴더 생성 기준 디렉터리
+	    		servletContext.setInitParameter("import-path"       , "file://../import");  //엑셀 import 임시폴더 생성 기준 디렉터리
+	        	
+//	        	servletContext.setInitParameter("export-path"       , "ext://../export");  //엑셀 export 임시폴더 생성 기준 디렉터리
+//	    		servletContext.setInitParameter("import-path"       , "ext://../import");  //엑셀 import 임시폴더 생성 기준 디렉터리
+	    		
+	    		
+	        	/** nexacro-xeni-java-1.4.12e.jar 테스트  */ 
+//	        	servletContext.setInitParameter("export-path"       , "ext://../export");  //엑셀 export 임시폴더 생성 기준 디렉터리
+//	    		servletContext.setInitParameter("import-path"       , "ext://../import");  //엑셀 import 임시폴더 생성 기준 디렉터리
+//	    		
+	        	//servletContext.setInitParameter("export-path"       , "ext:///export");  //엑셀 export 임시폴더 생성 기준 디렉터리
+	    		//servletContext.setInitParameter("import-path"       , "ext:///import");  //엑셀 import 임시폴더 생성 기준 디렉터리
+	        	
+	        	//servletContext.setInitParameter("export-path"       , "ext://./export");  //엑셀 export 임시폴더 생성 기준 디렉터리
+	    		//servletContext.setInitParameter("import-path"       , "ext://./import");  //엑셀 import 임시폴더 생성 기준 디렉터리
+	    		
+	        	
+	        	
+	        	/**
+	        	 * 
+	        	 * http://localhost:8080/XExportImport.do
+	        	 * */
+//	                servletContext.setInitParameter("export-path"       , "file:///export");  //엑셀 export 임시폴더 생성 기준 디렉터리
+//	                servletContext.setInitParameter("import-path"       , "file:///import");  //엑셀 import 임시폴더 생성 기준 디렉터리
+		        	//servletContext.setInitParameter("export-path"       , "file:///C:/TEMP/export\\");  //엑셀 export 임시폴더 생성 기준 디렉터리
+		    		//servletContext.setInitParameter("import-path"       , "file:///C:/TEMP/import\\");  //엑셀 import 임시폴더 생성 기준 디렉터리
+//		        	
+//	        	servletContext.setInitParameter("export-path"       , "ext://../export");  //엑셀 export 임시폴더 생성 기준 디렉터리
+//	    		servletContext.setInitParameter("import-path"       , "ext://../import");  //엑셀 import 임시폴더 생성 기준 디렉터리
+//	        	
+	    		
+	    		
+	        	/**
+	        	 * 
+	        	 * 
+	        	 * 상대 경로 url이 다름. 
+	        	 * http://localhost:8080/export/a968bb89-7e5f-43f1-8e2f-f7717fff0ea7/ExportData_BasicExport.xlsx? 404 (Not Found)
+	        	 * */
+	                //servletContext.setInitParameter("export-path"       , "../export/");  //엑셀 export 임시폴더 생성 기준 디렉터리
+	                //servletContext.setInitParameter("import-path"       , "../import/");  //엑셀 import 임시폴더 생성 기준 디렉터리
+//		        	
+	
+	        	
+	        		servletContext.setInitParameter("monitor-enabled"   , "false");    //임시파일 삭제를 위한 모니터링 여부
+	                servletContext.setInitParameter("monitor-cycle-time", "30");      //임시파일 삭제를 위한 모니터링 주기( default:분)
+	                servletContext.setInitParameter("file-storage-time" , "10");      //임시파일 생성 디렉터리 모니터링 주기 (default:분)
+	                
+	                System.out.println("##############################################################");
+	                
+	                System.out.println("WebAppConfig servletContext.getContextPath() : " + servletContext.getContextPath());
+	                System.out.println("WebAppConfig export-path : " + servletContext.getInitParameter("export-path"));
+	                System.out.println("##############################################################");
+	                
+	                
+	        }
+	      };
+	  }
+	
+	 
 	
 	
 }

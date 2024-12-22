@@ -18,43 +18,55 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("dsExportExcelList", this);
-            obj._setContents("<ColumnInfo><Column id=\"ID\" type=\"STRING\" size=\"256\"/><Column id=\"NAME\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"ID\">1</Col><Col id=\"NAME\">1</Col></Row><Row><Col id=\"ID\">2</Col><Col id=\"NAME\">2</Col></Row><Row><Col id=\"ID\">3</Col><Col id=\"NAME\">3</Col></Row></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"ID\" type=\"STRING\" size=\"256\"/><Column id=\"NAME\" type=\"STRING\" size=\"256\"/><Column id=\"Column0\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"ID\">export-path</Col><Col id=\"NAME\">ext://../export</Col><Col id=\"Column0\">프로젝트 홈 위치에서 한단계 위의 export 위치에 파일이 생성이 됨. 이후 다운로드는 실행 안됨</Col></Row><Row><Col id=\"ID\">export-path</Col><Col id=\"NAME\">ext://./export</Col><Col id=\"Column0\">프로젝트 홈 위치 아래 export 에 임시파일 생성이 됨. 이후 다운로드는 실행 안됨.</Col></Row><Row><Col id=\"ID\">export-path</Col><Col id=\"NAME\">ext:///export</Col><Col id=\"Column0\">최상위 드라이브 아래 export에 임시파일 생성이 됨. 이후 다운로드는 실행 안됨.</Col></Row></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsRequestParam", this);
+            obj._setContents("<ColumnInfo><Column id=\"id\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"id\">id</Col><Col id=\"name\">kims702</Col></Row></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsInLogin", this);
+            obj._setContents("<ColumnInfo><Column id=\"id\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Grid("grdList01","62","85","1009","108",null,null,null,null,null,null,this);
+            obj = new Grid("grdList01","62.00","85","1009","285",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_binddataset("dsExportExcelList");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"80\"/><Column size=\"80\"/></Columns><Rows><Row band=\"head\" size=\"24\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"ID\"/><Cell col=\"1\" text=\"NAME\"/></Band><Band id=\"body\"><Cell text=\"bind:ID\"/><Cell col=\"1\" text=\"bind:NAME\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"80\"/><Column size=\"200\"/><Column size=\"714\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"ID\"/><Cell col=\"1\" text=\"NAME\"/><Cell col=\"2\" text=\"Column0\"/></Band><Band id=\"body\"><Cell text=\"bind:ID\"/><Cell col=\"1\" text=\"bind:NAME\"/><Cell col=\"2\" text=\"bind:Column0\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button00","64.00","44","226","36",null,null,null,null,null,null,this);
             obj.set_taborder("1");
-            obj.set_text("Button port 8181 exam-nexacro-XExportImport");
+            obj.set_text("Button port 8080 XExportImport.do");
             this.addChild(obj.name, obj);
 
-            obj = new TextArea("txtLog","64","220","491","168",null,null,null,null,null,null,this);
+            obj = new TextArea("txtLog","64.00","430","1007","218",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button01","311","45","155","36",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("testfile");
+            obj.set_visible("false");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button02","489","47","199","33",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_text("filetransuupdown");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("Button03","598","235","208","81",null,null,null,null,null,null,this);
-            obj.set_taborder("5");
-            obj.set_text("E:\\ExtFileUpDownload");
+            obj.set_visible("false");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button04","64","7","627","30",null,null,null,null,null,null,this);
+            obj.set_taborder("5");
+            obj.set_text("넥사 헨들러!!");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("Button03","702","50","130","32",null,null,null,null,null,null,this);
             obj.set_taborder("6");
-            obj.set_text("Button04");
+            obj.set_text("모달리스팝업");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -76,8 +88,9 @@
         // User Script
         this.registerScript("Form_Work.xfdl", function() {
 
-        this.exportUrl = "http://localhost:8181/nexacro-xeni-java/XExportImport";
-        //this.exportUrl = "/nexacro-xeni-java/XExportImport";
+        // statidc
+        // http://localhost:8181/nexacro-xeni-java/XExportImport
+        this.exportUrl = "/XExportImport.do";
 
         //this.exportUrl = "http://localhost:8181/XExportImport";
 
@@ -112,7 +125,7 @@
 
         this.gfnBasicExport = function(pFileName)
         {
-            var sFileName = "ExportData(BasicExport)";
+            var sFileName = "ExportData_BasicExport";
             if(!this.gfnIsNull(pFileName))
             {
                 sFileName = pFileName;
@@ -220,6 +233,108 @@
         	console.log("---------");
         };
 
+        this.Button05_onclick = function(obj,e)
+        {
+          var sId    = "baseId";
+          var sUrl   = "http://localhost:9191/members.do";
+          var sInDs  = "dsInLogin=dsInLogin";
+          var sOutDs = "dsInLogin=dsInLogin";
+          var sArg   = "";
+          var sfunc  = "fn_callback";
+
+          this.transaction(sId,sUrl,sInDs,sOutDs,sArg,sfunc);
+        };
+
+
+        this.fn_callback = function(sId,nErrorCode,sErrorMSG)
+        {
+          if(nErrorCode == 0)
+          {
+            //완료 확인
+        	console.log("members.do--------------------------");
+            //trace(sId);
+          }
+        }
+
+        this.Button06_onclick = function(obj,e)
+        {
+        	var sId    = "sessionChk";
+          var sUrl   = "http://localhost:9191/sessionCheck.do";
+          var sInDs  = "dsInLogin=dsInLogin";
+          var sOutDs = "dsInLogin=dsInLogin";
+          var sArg   = "";
+          var sfunc  = "fn_callback_session_chk";
+
+          this.transaction(sId,sUrl,sInDs,sOutDs,sArg,sfunc);
+        };
+
+        this.fn_callback_session_chk = function(sId,nErrorCode,sErrorMSG){
+        	console.log("sId : " + sId);
+        	console.log("nErrorCode : " + nErrorCode);
+        	console.log("sErrorMSG : " + sErrorMSG);
+        }
+
+
+
+
+        this.Button07_onclick = function(obj,e)
+        {
+        	///sessionChk.do
+        	var sId    = "sessionChk";
+          var sUrl   = "http://localhost:9191/sessionChk.do";
+          var sInDs  = "dsInLogin=dsInLogin";
+          var sOutDs = "dsInLogin=dsInLogin";
+          var sArg   = "";
+          var sfunc  = "fn_callback_session_chk";
+
+          this.transaction(sId,sUrl,sInDs,sOutDs,sArg,sfunc);
+        };
+
+        this.Button08_onclick = function(obj,e)
+        {
+        	var sId    = "doLogin";
+          var sUrl   = "http://localhost:9191/doLogin.do";
+          var sInDs  = "dsInLogin=dsInLogin";
+          var sOutDs = "dsInLogin=dsInLogin";
+          var sArg   = "";
+          var sfunc  = "fn_callback_session_chk";
+
+          this.transaction(sId,sUrl,sInDs,sOutDs,sArg,sfunc);
+        };
+
+        this.Button03_onclick = function(obj,e)
+        {
+        	var nW = 1000;
+        	var nH = 700;
+
+        	var objApp = nexacro.getApplication();
+        	var nLeft = (objApp.mainframe.width  / 2) - Math.round(nW / 2);
+        	var nTop  = (objApp.mainframe.height / 2) - Math.round(nH / 2) ;
+        	nLeft = system.clientToScreenX(this, nLeft);
+        	nTop  = system.clientToScreenY(this, nTop);
+
+        // 	var objParam = {param1:this.edt_param1.value
+        // 				  , param2:this.edt_param2.value
+        // 				  , param3:this.ds_parent};
+        	var objParam = { };
+        	var sOpenStyle = "dragmovetype=all"
+        				 + " resizable=true"
+        				 + " titletext=Modeless"
+        				 + " showtitlebar=true"
+        				 + " showstatusbar=false";
+
+        	nexacro.open("chf_popup3"
+        			   , "FrameBase::Form_Work.xfdl"
+        			   , this.getOwnerFrame()
+        			   , objParam
+        			   , sOpenStyle
+        			   , nLeft
+        			   , nTop
+        			   , nW
+        			   , nH
+        			   , this);
+        };
+
         });
         
         // Regist UI Components Event
@@ -229,6 +344,7 @@
             this.Button01.addEventHandler("onclick",this.Button01_onclick,this);
             this.Button02.addEventHandler("onclick",this.Button02_onclick,this);
             this.Button04.addEventHandler("onclick",this.Button04_onclick,this);
+            this.Button03.addEventHandler("onclick",this.Button03_onclick,this);
         };
         this.loadIncludeScript("Form_Work.xfdl");
         this.loadPreloadList();

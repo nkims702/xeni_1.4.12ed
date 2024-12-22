@@ -27,7 +27,7 @@
 <%
 
 	/*file upload*/
-	
+	System.out.println("jsp------------------------------------------");
 	request.setCharacterEncoding("UTF-8");
 
 	//서버의 실제 파일 저장 절대 경로
@@ -91,7 +91,7 @@
 			{
 				ds.set(row, "savePath", f.getPath());
 				ds.set(row, "fileSize", f.length());
-				ds.set(row, "fullUrl",  url+fileName);
+				ds.set(row, "fullUrl",  savePath + fileName);
 			}
 		}
 

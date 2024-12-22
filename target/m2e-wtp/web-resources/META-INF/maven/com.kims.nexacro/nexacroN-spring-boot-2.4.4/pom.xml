@@ -252,29 +252,50 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/nexacro-xeni-java-1.4.13.jar</systemPath> -->	
 			
-		<!-- jenkins build -->	
 		<dependency> 
+			<groupId>cos</groupId>
+			<artifactId>cos</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/cos.jar</systemPath>
+		</dependency> 
+		 <dependency> 
 			<groupId>com.nexacron</groupId>
 			<artifactId>nexacro-xapi</artifactId>
 			<version>1.0.13</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/nexacro-xapi-java-1.0.12.jar</systemPath>
-		</dependency> 
+		</dependency>
 		
 		<dependency>
 			<groupId>com.nexacron</groupId>
 			<artifactId>nexacro-xeni</artifactId>
 			<version>1.4.13</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/nexacro-xeni-java-1.4.13.jar</systemPath>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/nexacro-xeni-java-1.4.12ed.jar</systemPath>
 		</dependency>
+		
+		<!-- <dependency>
+			<groupId>com.nexacron</groupId>
+			<artifactId>nexacro-xeni</artifactId>
+			<version>1.4.13</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/nexacro-xeni-java-1.4.12d.jar</systemPath>
+		</dependency> -->
+		<!-- <dependency>
+			<groupId>com.nexacron</groupId>
+			<artifactId>nexacro-xeni</artifactId>
+			<version>1.4.13</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/nexacro-xeni-java-1.4.13.jar</systemPath>
+		</dependency> -->
 			
 		<dependency>
 			<groupId>com.nexacron</groupId>
 			<artifactId>uiadapter-spring-core</artifactId>
 			<version>1.0.0</version> 
 			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/uiadapter-spring-core-1.0.0-SNAPSHOT.jar</systemPath>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/uiadapter-spring-core-1.0.0.jar</systemPath>
 		</dependency>
 		  
 		<dependency>
@@ -282,7 +303,7 @@
 			<artifactId>uiadapter-spring-dataaccess</artifactId>
 			<version>1.0.0</version> 
 			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/uiadapter-spring-dataaccess-1.0.0-SNAPSHOT.jar</systemPath>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/uiadapter-spring-dataaccess-1.0.0.jar</systemPath>
 		</dependency>
 		
 		<dependency>
@@ -290,7 +311,7 @@
 			<artifactId>uiadapter-spring-excel</artifactId>
 			<version>1.0.0</version> 
 			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/uiadapter-spring-excel-1.0.0-SNAPSHOT.jar</systemPath>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/uiadapter-spring-excel-1.0.0.jar</systemPath>
 		</dependency>
 		<!-- local build -->	
 		<!-- <dependency> 
@@ -337,11 +358,11 @@
 			<scope>test</scope> 
 		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
-		<dependency>
+		<!-- <dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-security</artifactId>
 		    <version>2.7.0</version>
-		</dependency>
+		</dependency> -->
 						
 		
 	</dependencies>

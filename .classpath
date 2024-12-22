@@ -37,8 +37,6 @@
 			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/GitHub/exam-nexacro-XExportImport/src/main/webapp/WEB-INF/lib/nexacro-xapi-java-1.0.12.jar"/>
-	<classpathentry kind="lib" path="D:/GitHub/exam-nexacro-XExportImport/src/main/webapp/WEB-INF/lib/nexacro-xeni-java-1.4.13.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/cos.jar"/>
 	<classpathentry kind="src" output="target/test-classes" path="target/generated-test-sources/test-annotations">
 		<attributes>

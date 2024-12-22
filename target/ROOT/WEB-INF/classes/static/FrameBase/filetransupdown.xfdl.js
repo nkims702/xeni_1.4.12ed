@@ -85,6 +85,11 @@
             obj.set_taborder("7");
             obj.set_text("저장");
             this.addChild(obj.name, obj);
+
+            obj = new Button("Button00","261","33","241","30",null,null,null,null,null,null,this);
+            obj.set_taborder("8");
+            obj.set_text("filetransupdown");
+            this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
             obj = new Layout("default","",850,530,this,function(p){});
@@ -127,14 +132,17 @@
         **************************************************************************/
         //service url : 사용경로 지정
         //this.saveUrl = "http://localhost:8080/playnexacro_nana/service/fileupdown/";
-        this.saveUrl = "http://localhost:8181/nexacro-web/fileupdown/";
+        //http://localhost:8181/nexacro-web/fileupdown
+        //this.saveUrl = "http://localhost:8181/fileupdown/";
+        this.saveUrl = "http://localhost:9191/fileupdown/";
         //file directory
         this.folderName = "fileSample";
-
+        //this.folderName = "C:\\dev\\nexacro-import-file\\";
         /**************************************************************************
          * FORM EVENT 영역(onload)
          sUploadUrl	: "fileUpload_postdatatest.jsp?filefolder=",
          **************************************************************************/
+        console.log("filetransupdown----------------------------------------------------------");
         this.filetransupdown_onload = function(obj,e)
         {
         	var objConfig  = {
@@ -146,7 +154,7 @@
         						dsDownloadId: "dsDownload",
         						sFolerName	: this.folderName,
         						sSaveUrl	: this.saveUrl,
-        						sUploadUrl	: "fileUpload_postdatatest.jsp",
+        						sUploadUrl	: "fileUpload_postdatatest.jsp?filefolder=",
         						sDownloadSingleUrl	: "fileDownload_postdatatest.jsp",
         						sDownloadMultiUrl	: "fileDownload_postdatatestAll.jsp"
         					 }
