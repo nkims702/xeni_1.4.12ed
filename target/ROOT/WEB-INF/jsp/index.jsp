@@ -1,6 +1,0 @@
-index.jsp
-
-gitea
-
-
-outputDirectory
